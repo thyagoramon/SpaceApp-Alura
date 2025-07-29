@@ -10,6 +10,7 @@ const ListaStyled = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 29px;
+  margin-right: 24px;
 `
 
 const BarraLateral = () => {

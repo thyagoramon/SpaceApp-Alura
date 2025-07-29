@@ -20,6 +20,12 @@ const EstilosGlobais = createGlobalStyle`
     src: local('Gandhi Sans Bold'), local('GandhiSansBold'), url(${GandhiSansBold});
   } 
   
+  .page {
+    display: flex;
+  }
+
+  /*NORMALIZER*/
+
   html {
     font-family: 'GandhiSansRegular';
     line-height: 1.15; 
