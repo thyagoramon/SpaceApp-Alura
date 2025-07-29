@@ -3,21 +3,24 @@ import { styled } from "styled-components"
 const ItemNavegacaoStyled = styled.li`
   display: flex;
   align-items: center;  
-  font-size: 24px;
-  font-weight: 700;
   gap: 18px;
-  cursor: pointer;
+  cursor: pointer;  
+  p {
+    font-family: ${props => props.$ativo ? 'GandhiSansBold' : 'GandhiSansRegular'};
+    font-size: 24px;
+    font-weight: ${props => props.$ativo ? 700 : 400};
+    color: ${props => props.$ativo ? '#7b78e5' : '#d9d9d9'};
+    transition: 0.3s ease;
+    &:hover {
+      color: #7b78e5;
+    }
+  }
 `
-
 const ItemNavegacao = ({iconeAtivo, iconeInativo, ativo = false, children}) => {
-  const cor = ativo ? '#7b78e5' : '#d9d9d9';
-
   return (
-    <ItemNavegacaoStyled>
+    <ItemNavegacaoStyled $ativo={ativo}>
       <img src={ativo ? iconeAtivo : iconeInativo} />
-      <p style={{
-        color: cor
-      }}>{children}</p>
+      <p>{children}</p>
     </ItemNavegacaoStyled>
   )
 }
