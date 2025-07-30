@@ -18,10 +18,6 @@ const EstilosGlobais = createGlobalStyle`
   @font-face {
     font-family: 'GandhiSansBold';
     src: local('Gandhi Sans Bold'), local('GandhiSansBold'), url(${GandhiSansBold});
-  } 
-  
-  .page {
-    display: flex;
   }
 
   /*NORMALIZER*/
