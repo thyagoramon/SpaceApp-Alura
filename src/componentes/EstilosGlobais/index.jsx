@@ -9,6 +9,7 @@ const EstilosGlobais = createGlobalStyle`
     padding: 0;
     text-decoration: none;
     box-sizing: border-box;
+    overflow-x: hidden;
   }
 
   @font-face {

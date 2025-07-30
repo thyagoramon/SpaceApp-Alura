@@ -31,7 +31,7 @@ const Feed = styled.div`
   gap: 24px;
 `
 
-const Galeria = ({fotos = []}) => {
+const Galeria = ({fotos = [], onFotoSelecionada}) => {
   return (
     <GaleriaStyled>
       <Tags/>
@@ -39,7 +39,11 @@ const Galeria = ({fotos = []}) => {
         <FeedContainer>
           <Titulo>Navegue pela galeria</Titulo>
           <Feed>
-            {fotos.map(foto => <Card key={foto.id} imagem={foto.path} titulo={foto.titulo} fonte={foto.fonte}/>)}
+            {fotos.map(foto => <Card
+              key={foto.id}
+              dados={foto}
+              onZoom={onFotoSelecionada}
+            />)}
           </Feed>
         </FeedContainer>
         <Populares/>

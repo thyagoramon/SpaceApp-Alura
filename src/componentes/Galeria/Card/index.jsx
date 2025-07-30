@@ -1,5 +1,5 @@
 import { styled } from "styled-components"
-import { FaHeart, FaExpandAlt } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaExpandAlt } from "react-icons/fa";
 
 
 const CardStyled = styled.figure`
@@ -9,10 +9,6 @@ const CardStyled = styled.figure`
   flex-direction: column;
   overflow: hidden;
   background-color: #001634;
-  transition: 0.3s ease;
-  &:hover {
-    scale: 1.03;
-  }
 
   img {
     width: 100%;
@@ -57,18 +53,18 @@ const Icones = styled.div`
   }
 `
 
-const Card = ({imagem, titulo, fonte}) => {
+const Card = ({ dados, onZoom }) => {
   return (
     <CardStyled>
-      <img src={imagem} alt={titulo} />
+      <img src={dados.path} alt={dados.titulo} />
       <figcaption>
         <Textos>
-          <h3>{titulo}</h3>
-          <p>{fonte}</p>
+          <h3>{dados.titulo}</h3>
+          <p>{dados.fonte}</p>
         </Textos>
         <Icones>
-            <button><FaHeart /></button>
-            <button><FaExpandAlt /></button>
+            <button><FaRegHeart /></button>
+            <button onClick={() => onZoom(dados)}><FaExpandAlt /></button>
         </Icones>
       </figcaption>
     </CardStyled>

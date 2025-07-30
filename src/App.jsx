@@ -6,6 +6,7 @@ import Cabecalho from "./componentes/Cabecalho"
 import BarraLateral from "./componentes/BarraLateral"
 import Banner from "./componentes/Banner"
 import Galeria from "./componentes/Galeria"
+import ModalZoom from "./componentes/ModalZoom"
 
 import imagemBanner from './assets/banner.png'
 import fotos from './fotos.json'
@@ -41,6 +42,7 @@ const GaleriaFeed = styled.div`
 
 const App = () => {
   const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos)
+  const [fotoSelecionada, setFotoSelecionada] = useState(null)
 
   return (
     <FundoGradiente>
@@ -53,10 +55,14 @@ const App = () => {
             <Banner imagem={imagemBanner}>
               <h2>A galeria mais<br/>completa de<br/>fotos do espaço!</h2>
             </Banner>
-            <Galeria fotos={fotosDaGaleria}/>
+            <Galeria
+              onFotoSelecionada={foto => setFotoSelecionada(foto)}
+              fotos={fotosDaGaleria}
+            />
           </Conteudo>
         </MainContainer>
       </AppContainer>
+      <ModalZoom foto={fotoSelecionada}/>
     </FundoGradiente>
   )
 }
