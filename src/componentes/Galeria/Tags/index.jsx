@@ -26,11 +26,18 @@ const ButtonStyled = styled.button`
   }
 `
 
-const Tags = () => {
+const Tags = ({setTag}) => {
   return (
     <TagsStyled>
       <TotuloStyled>Busque por tags:</TotuloStyled>
-      {tags.map(tag => <ButtonStyled key={tag.id}>{tag.titulo}</ButtonStyled>)}
+      {tags.map(tag => <ButtonStyled
+        key={tag.id}
+        onClick={() => {
+          setTag(tag.id)
+        }}
+      >
+        {tag.titulo}
+      </ButtonStyled>)}
     </TagsStyled>
   )
 }

@@ -31,10 +31,10 @@ const IconeLupa = styled.img`
   height: 38px;
 `
 
-const CampoTexto = ({children}) => {
+const CampoTexto = ({children, setPesquisa}) => {
   return (
     <ContainerEstilizado>
-      <CampoTextoStyled type="search" placeholder={children}/>
+      <CampoTextoStyled type="search" placeholder={children} onChange={(e) => {setPesquisa(e.target.value)}}/>
       <IconeLupa src={search} alt="Ícone de lupa"/>
     </ContainerEstilizado>
   )

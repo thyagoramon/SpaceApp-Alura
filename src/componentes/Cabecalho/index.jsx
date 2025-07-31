@@ -11,11 +11,11 @@ const HeaderStyled = styled.header`
   }
 `
 
-const Cabecalho = () => {
+const Cabecalho = ({setPesquisa}) => {
   return (
     <HeaderStyled>
       <img src="./imagens/logo.png" alt="Logo Space App" />
-      <CampoTexto>O que você procura?</CampoTexto>
+      <CampoTexto setPesquisa={setPesquisa}>O que você procura?</CampoTexto>
     </HeaderStyled>
   )
 }

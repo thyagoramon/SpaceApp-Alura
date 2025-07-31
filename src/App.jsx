@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 
 import EstilosGlobais from "./componentes/EstilosGlobais"
@@ -6,7 +6,7 @@ import Cabecalho from "./componentes/Cabecalho"
 import BarraLateral from "./componentes/BarraLateral"
 import Banner from "./componentes/Banner"
 import Galeria from "./componentes/Galeria"
-import ModalZoom from "./componentes/ModalZoom"
+import Modal from "./componentes/Modal"
 
 import imagemBanner from './assets/banner.png'
 
@@ -45,6 +45,21 @@ const App = () => {
   const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos)
   const [fotoSelecionada, setFotoSelecionada] = useState(null)
   const [modalOn, setModalOn] = useState(false)
+  const [tag, setTag] = useState(0)
+  const [pesquisa, setPesquisa] = useState('')
+
+  
+  useEffect(() => {
+    const fotosFiltradas = fotos.filter(foto => {
+      const filtroPorTag = !tag || foto.tagId === tag;
+        //filtro 1, ou não tem tag ou a tag é igual
+      const filtroPorPesquisa = !pesquisa || foto.titulo.toLowerCase().includes(pesquisa.toLowerCase().trim())
+        //filtro 2, ou não tem pesquisa ou a pesquisa contem no título
+      return filtroPorTag && filtroPorPesquisa
+        //retorna os dois filtros
+    })
+    setFotosDaGaleria(fotosFiltradas)
+  },[tag, pesquisa])
   
   const likeToggle = (foto) => {
     if (foto.id === fotoSelecionada?.id) {
@@ -66,7 +81,7 @@ const App = () => {
     <FundoGradiente>
       <EstilosGlobais/>
       <AppContainer>
-        <Cabecalho/>
+        <Cabecalho setPesquisa={setPesquisa}/>
         <MainContainer>
           <BarraLateral/>
           <Conteudo>
@@ -77,19 +92,18 @@ const App = () => {
               dados={fotosDaGaleria}
               fotosPopulares={fotosPopulares}
               ImageToModal={foto => setFotoSelecionada(foto)}
-              modalOn={modalOn}
               setModalOn={setModalOn}
               likeToggle={likeToggle}
+              setTag={setTag}
             />
           </Conteudo>
         </MainContainer>
       </AppContainer>
-      <ModalZoom
+      <Modal
         dados={fotoSelecionada}
         modalOn={modalOn}
         setModalOn={setModalOn}
         likeToggle={likeToggle}
-        ImageToModal={foto => setFotoSelecionada(foto)}
       />
     </FundoGradiente>
   )

@@ -1,9 +1,6 @@
 import { styled } from "styled-components"
 import { FaRegHeart, FaExpandAlt } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa6";
-import { IoMdClose } from "react-icons/io";
-
-
 
 const CardStyled = styled.figure`
   width: 100%;
@@ -59,14 +56,10 @@ const Icones = styled.div`
   }
 `
 
-const Card = ({ dados, ImageToModal, modalOn, setModalOn, simple = false, likeToggle }) => {
+const Card = ({ dados, ImageToModal, setModalOn, simple = false, likeToggle }) => {
   const openModal = () => {
     ImageToModal(dados)
     setModalOn(true)
-  }
-
-  const closeModal = () => {
-    setModalOn(false)
   }
 
   return (
@@ -82,14 +75,9 @@ const Card = ({ dados, ImageToModal, modalOn, setModalOn, simple = false, likeTo
               <button onClick={() => likeToggle(dados)}>
                 {dados.favorita ? <FaHeart /> : <FaRegHeart />}
               </button>
-
-              {modalOn ?
-              <button className="btn-close" onClick={closeModal}><IoMdClose /></button>
-              :
               <button onClick={openModal}>
                 <FaExpandAlt />
-              </button>
-              }
+              </button>              
           </Icones>
         </figcaption>
       }

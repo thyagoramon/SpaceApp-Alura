@@ -2,11 +2,10 @@ import { styled } from "styled-components"
 import ItemNavegacao from "./ItemNavegacao"
 
 const BarraLateralStyled = styled.aside`
-
+  width: 250px;
 `
 const ListaStyled = styled.ul`
   list-style: none;
-  width: 212px;
   display: flex;
   flex-direction: column;
   gap: 29px;

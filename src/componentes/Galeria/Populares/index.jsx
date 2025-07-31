@@ -10,7 +10,7 @@ const PopularesStyled = styled.div`
   gap: 24px;
 `
 
-const Populares = ({fotos, ImageToModal, modalOn, setModalOn }) => {
+const Populares = ({fotos, ImageToModal, setModalOn }) => {
   return (
     <PopularesStyled>
       <Titulo alinhamento={'center'}>Populares</Titulo>
@@ -18,7 +18,6 @@ const Populares = ({fotos, ImageToModal, modalOn, setModalOn }) => {
         key={foto.id}
         dados={foto}
         ImageToModal={ImageToModal}
-        modalOn={modalOn}
         setModalOn={setModalOn}
         simple={true}
       />)}
