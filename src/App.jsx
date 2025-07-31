@@ -7,9 +7,9 @@ import BarraLateral from "./componentes/BarraLateral"
 import Banner from "./componentes/Banner"
 import Galeria from "./componentes/Galeria"
 import Modal from "./componentes/Modal"
+import Footer from "./componentes/Footer"
 
 import imagemBanner from './assets/banner.png'
-
 import fotos from './fotos.json'
 import fotosPopulares from './fotosPopulares.json'
 
@@ -105,6 +105,7 @@ const App = () => {
         setModalOn={setModalOn}
         likeToggle={likeToggle}
       />
+      <Footer/>
     </FundoGradiente>
   )
 }
