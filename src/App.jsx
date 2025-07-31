@@ -45,6 +45,22 @@ const App = () => {
   const [fotosDaGaleria, setFotosDaGaleria] = useState(fotos)
   const [fotoSelecionada, setFotoSelecionada] = useState(null)
   const [modalOn, setModalOn] = useState(false)
+  
+  const likeToggle = (foto) => {
+    if (foto.id === fotoSelecionada?.id) {
+      setFotoSelecionada({
+        ...fotoSelecionada,
+        favorita: !fotoSelecionada.favorita
+      })
+    }
+
+    setFotosDaGaleria(fotosDaGaleria.map(fotoDaGaleria => {
+      return {
+        ...fotoDaGaleria,
+        favorita: fotoDaGaleria.id === foto.id ? !fotoDaGaleria.favorita : fotoDaGaleria.favorita
+      }
+    }))
+  }
 
   return (
     <FundoGradiente>
@@ -58,19 +74,22 @@ const App = () => {
               <h2>A galeria mais<br/>completa de<br/>fotos do espaço!</h2>
             </Banner>
             <Galeria
-              fotosFeed={fotosDaGaleria}
+              dados={fotosDaGaleria}
               fotosPopulares={fotosPopulares}
               ImageToModal={foto => setFotoSelecionada(foto)}
               modalOn={modalOn}
               setModalOn={setModalOn}
+              likeToggle={likeToggle}
             />
           </Conteudo>
         </MainContainer>
       </AppContainer>
       <ModalZoom
-        foto={fotoSelecionada}
+        dados={fotoSelecionada}
         modalOn={modalOn}
         setModalOn={setModalOn}
+        likeToggle={likeToggle}
+        ImageToModal={foto => setFotoSelecionada(foto)}
       />
     </FundoGradiente>
   )

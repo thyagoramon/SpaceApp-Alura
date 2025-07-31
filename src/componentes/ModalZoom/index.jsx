@@ -5,11 +5,13 @@ const ModalZoomStyled = styled.dialog`
   background-color: transparent;
   border: none;
 
-  position: absolute;
-  top: 70px;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
   width: 100%;
   max-width: 50vw;
-  margin: 0 auto;
+  margin: auto;
+  z-index: 10;
 `;
 
 const Overlay = styled.div`
@@ -19,19 +21,22 @@ const Overlay = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
+  z-index: 1;
 `
 
-const ModalZoom = ({foto, modalOn, setModalOn}) => {
+const ModalZoom = ({dados, modalOn, setModalOn, likeToggle, ImageToModal }) => {
   return (
     <>
       {modalOn &&
         <>
-          <Overlay/>
+          <Overlay onClick={() => setModalOn(false)}/>
           <ModalZoomStyled open>
               <Card
-                dados={foto}
+                dados={dados}
                 modalOn={modalOn}
                 setModalOn={setModalOn}
+                likeToggle={likeToggle}
+                ImageToModal={ImageToModal}                
               />
           </ModalZoomStyled>
         </>

@@ -15,18 +15,19 @@ const FeedContainer = styled.div`
   gap: 24px;
 `
 
-const Feed = ({fotos, ImageToModal, modalOn, setModalOn}) => {
+const Feed = ({dados, ImageToModal, modalOn, setModalOn, likeToggle}) => {
   return (
     <FeedStyled>
       <Titulo>Navegue pela galeria</Titulo>
       <FeedContainer>
-        {fotos.map((foto) => (
+        {dados.map((dado) => (
           <Card
-            key={foto.id}
-            dados={foto}
+            key={dado.id}
+            dados={dado}
             ImageToModal={ImageToModal}
             modalOn={modalOn}
             setModalOn={setModalOn}
+            likeToggle={likeToggle}
           />
         ))}
       </FeedContainer>

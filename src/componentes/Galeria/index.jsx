@@ -22,16 +22,17 @@ const Content = styled.div`
 
 
 
-const Galeria = ({fotosFeed = [], fotosPopulares = [], ImageToModal, modalOn, setModalOn}) => {
+const Galeria = ({dados = [], fotosPopulares = [], ImageToModal, modalOn, setModalOn, likeToggle}) => {
   return (
     <GaleriaStyled>
       <Tags/>
       <Content>
         <Feed
-          fotos={fotosFeed}
+          dados={dados}
           ImageToModal={ImageToModal}
           modalOn={modalOn} 
           setModalOn={setModalOn}
+          likeToggle={likeToggle}
         />
         <Populares
           fotos={fotosPopulares}

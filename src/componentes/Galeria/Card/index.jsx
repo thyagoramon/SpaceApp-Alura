@@ -1,5 +1,6 @@
 import { styled } from "styled-components"
 import { FaRegHeart, FaExpandAlt } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa6";
 import { IoMdClose } from "react-icons/io";
 
 
@@ -58,7 +59,7 @@ const Icones = styled.div`
   }
 `
 
-const Card = ({ dados, ImageToModal, modalOn, setModalOn, simple = false }) => {
+const Card = ({ dados, ImageToModal, modalOn, setModalOn, simple = false, likeToggle }) => {
   const openModal = () => {
     ImageToModal(dados)
     setModalOn(true)
@@ -77,8 +78,11 @@ const Card = ({ dados, ImageToModal, modalOn, setModalOn, simple = false }) => {
             <h3>{dados.titulo}</h3>
             <p>{dados.fonte}</p>
           </Textos>
-          <Icones>
-              <button><FaRegHeart /></button>
+          <Icones>              
+              <button onClick={() => likeToggle(dados)}>
+                {dados.favorita ? <FaHeart /> : <FaRegHeart />}
+              </button>
+
               {modalOn ?
               <button className="btn-close" onClick={closeModal}><IoMdClose /></button>
               :
