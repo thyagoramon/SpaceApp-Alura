@@ -21,14 +21,18 @@ const Overlay = styled.div`
   left: 0;
 `
 
-const ModalZoom = ({foto}) => {
+const ModalZoom = ({foto, modalOn, setModalOn}) => {
   return (
     <>
-      {foto &&
+      {modalOn &&
         <>
           <Overlay/>
-          <ModalZoomStyled open={!!foto}>
-              <Card dados={foto}/>
+          <ModalZoomStyled open>
+              <Card
+                dados={foto}
+                modalOn={modalOn}
+                setModalOn={setModalOn}
+              />
           </ModalZoomStyled>
         </>
       }

@@ -1,10 +1,12 @@
 import { styled } from "styled-components"
-import { FaHeart, FaRegHeart, FaExpandAlt } from "react-icons/fa";
+import { FaRegHeart, FaExpandAlt } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
+
 
 
 const CardStyled = styled.figure`
   width: 100%;
-  border-radius: 24px;
+  border-radius: 6%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -51,22 +53,42 @@ const Icones = styled.div`
       color: #7B78E5;
     }
   }
+  .btn-close{
+    font-size: 25px;
+  }
 `
 
-const Card = ({ dados, onZoom }) => {
+const Card = ({ dados, ImageToModal, modalOn, setModalOn, simple = false }) => {
+  const openModal = () => {
+    ImageToModal(dados)
+    setModalOn(true)
+  }
+
+  const closeModal = () => {
+    setModalOn(false)
+  }
+
   return (
     <CardStyled>
-      <img src={dados.path} alt={dados.titulo} />
-      <figcaption>
-        <Textos>
-          <h3>{dados.titulo}</h3>
-          <p>{dados.fonte}</p>
-        </Textos>
-        <Icones>
-            <button><FaRegHeart /></button>
-            <button onClick={() => onZoom(dados)}><FaExpandAlt /></button>
-        </Icones>
-      </figcaption>
+      <img onClick={openModal} src={dados.path} alt={dados.titulo} />
+      {!simple &&
+        <figcaption>
+          <Textos>
+            <h3>{dados.titulo}</h3>
+            <p>{dados.fonte}</p>
+          </Textos>
+          <Icones>
+              <button><FaRegHeart /></button>
+              {modalOn ?
+              <button className="btn-close" onClick={closeModal}><IoMdClose /></button>
+              :
+              <button onClick={openModal}>
+                <FaExpandAlt />
+              </button>
+              }
+          </Icones>
+        </figcaption>
+      }
     </CardStyled>
   )
 }

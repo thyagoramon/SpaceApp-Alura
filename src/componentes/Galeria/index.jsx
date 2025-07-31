@@ -4,6 +4,7 @@ import Titulo from "../Titulo"
 import Tags from "./Tags"
 import Populares from "./Populares"
 import Card from "./Card"
+import Feed from "./Feed"
 
 const GaleriaStyled = styled.div`
   display: flex;
@@ -16,37 +17,28 @@ const GaleriaStyled = styled.div`
 const Content = styled.div`
   width: 100%;
   display: flex;
-`
-
-const FeedContainer = styled.section`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
   gap: 24px;
 `
 
-const Feed = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-`
 
-const Galeria = ({fotos = [], onFotoSelecionada}) => {
+
+const Galeria = ({fotosFeed = [], fotosPopulares = [], ImageToModal, modalOn, setModalOn}) => {
   return (
     <GaleriaStyled>
       <Tags/>
       <Content>
-        <FeedContainer>
-          <Titulo>Navegue pela galeria</Titulo>
-          <Feed>
-            {fotos.map(foto => <Card
-              key={foto.id}
-              dados={foto}
-              onZoom={onFotoSelecionada}
-            />)}
-          </Feed>
-        </FeedContainer>
-        <Populares/>
+        <Feed
+          fotos={fotosFeed}
+          ImageToModal={ImageToModal}
+          modalOn={modalOn} 
+          setModalOn={setModalOn}
+        />
+        <Populares
+          fotos={fotosPopulares}
+          ImageToModal={ImageToModal}
+          modalOn={modalOn}
+          setModalOn={setModalOn}
+        />
       </Content>
     </GaleriaStyled>
   )
